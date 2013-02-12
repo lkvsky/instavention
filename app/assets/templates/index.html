@@ -1,0 +1,9 @@
+<% _.each(grid, function(row) { %>
+<div class="row">
+  <% _.each(row, function(img) { %>
+  <div class="span2 tile" data-bomb="<%= img.attributes.game_bomb %>" data-match="<%= img.attributes.game_match %>">
+    <img src="<%= img.attributes.url %>">
+  </div>
+  <% }); %>
+</div>
+<%  }); %>

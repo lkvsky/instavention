@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instavention</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <% if session[:access_token] %>
+      <%= button_to "Log Out", session_path, :method => :delete, :class => "btn btn-inverse" %>
+    <% end %>
+
+    <%= yield %>
+
+  </div>
+</body>
+</html>
