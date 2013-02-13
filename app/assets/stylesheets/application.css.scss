@@ -17,10 +17,38 @@
  }
 
  #gameboard {
-  display: none;
   margin-top: 30px;
+ }
+
+ .grid img:hover, div.cover:hover {
+  -moz-box-shadow: 0 0 30px #9D6B84;
+  -webkit-box-shadow: 0 0 30px #9D6B84;
+  box-shadow: 0 0 30px #9D6B84;
+ }
+
+ .grid img, .grid .cover, .stats img {
+  -moz-box-shadow: 0 0 5px #888;
+  -webkit-box-shadow: 0 0 5px #888;
+  box-shadow: 0 0 5px #888;
  }
 
  .tile {
   margin: 10px;
+ }
+
+ .cover {
+  width: 140px;
+  height: 140px;
+  background-color: black;
+ }
+
+ .hidden {
+  opacity: 0;
+ }
+
+ .uncover {
+  opacity: 1;
+  [data-bomb="1"] {
+    border: 10px solid red;
+  }
  }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210205856) do
+ActiveRecord::Schema.define(:version => 20130212173003) do
 
   create_table "photos", :force => true do |t|
     t.string   "url"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20130210205856) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "photos", ["url"], :name => "index_photos_on_url"
+  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "access_token"
     t.integer  "instagram_id"
@@ -30,5 +33,8 @@ ActiveRecord::Schema.define(:version => 20130210205856) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "users", ["access_token"], :name => "index_users_on_access_token"
+  add_index "users", ["instagram_id"], :name => "index_users_on_instagram_id"
 
 end

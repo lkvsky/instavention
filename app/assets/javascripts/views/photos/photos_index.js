@@ -10,42 +10,25 @@ var PhotosView = Backbone.View.extend({
 
     _.bindAll(this, "resetGame");
     this.collection.bind("reset", this.resetGame, this);
+
+    _.templateSettings = {
+      interpolate: /\{\{\=(.+?)\}\}/g,
+      evaluate: /\{\{(.+?)\}\}/g
+    };
   },
 
   // Rendering
 
-  render: function() {
-    $("#gameboard").show();
-    this.renderGrid();
-    this.renderMatch();
-    this.renderBomb();
-  },
-
-  renderMatch: function() {
-    var compiled = _.template("<img src='<%= img.attributes.url %>' class='tile'>");
-    var rendered = compiled({img: this.matchedModel});
-    $("#match").append(rendered);
-  },
-
-  renderBomb: function() {
-    var compiled = _.template("<img src='<%= img.attributes.url %>' class='tile'>");
-    var rendered = compiled({img: this.bombedModel});
-    $("#bomb").append(rendered);
-  },
-
-  renderGrid: function() {
-    tplString = "<% _.each(grid, function(row) { %>\
-      <div class='row'>\
-        <% _.each(row, function(img) { %>\
-        <div class='span2 tile' data-bomb='<%= img.attributes.game_bomb %>' data-match='<%= img.attributes.game_match %>'>\
-          <img src='<%= img.attributes.url %>'>\
-        </div>\
-        <% }); %>\
-      </div>\
-      <%  }); %>";
-    var compiled = _.template(tplString);
-    var rendered = compiled({grid: this.grid});
-    $("#grid").append(rendered);
+  renderGame: function() {
+    var template = _.template($("#grid-tpl").html());
+    $("#gameboard").html(template({grid: this.grid, bomb: this.bombedModel, match: this.matchedModel}));
+    $(".cover").on("click", function(event) {
+      $(this).removeClass("cover");
+    });
+    $(".grid img").on("click", function(event) {
+      $(this).removeClass("hidden");
+      $(this).addClass("uncover");
+    });
   },
 
   resetGame: function() {
@@ -54,7 +37,7 @@ var PhotosView = Backbone.View.extend({
     this.chooseMatch();
     this.chooseBomb();
     this.fillGrid();
-    this.render();
+    this.renderGame();
   },
 
   // Grid filling functions

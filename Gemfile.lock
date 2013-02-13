@@ -131,6 +131,7 @@ DEPENDENCIES
   backbone-on-rails
   better_errors
   bootstrap-sass
+  ejs
   instagram
   jquery-rails
   rails (= 3.2.11)
