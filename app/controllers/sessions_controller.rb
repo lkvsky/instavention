@@ -1,9 +1,6 @@
 class SessionsController < ApplicationController
   def show
     instagram_config
-
-    @client_id = CLIENT_ID
-    @redirect_path = CALLBACK_URL
   end
 
   def destroy

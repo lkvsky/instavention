@@ -1,10 +1,15 @@
 class PhotosController < ApplicationController
   def index
     @user = User.find_by_access_token(session[:access_token])
-    redirect_to root_path if @user.nil?
 
     respond_to do |format|
-      format.html { render :index }
+      format.html do
+        if @user.nil?
+          redirect_to root_path
+        else
+          render :index
+        end
+      end
       format.json { render :json => @user.photos }
     end
   end

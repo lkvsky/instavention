@@ -54,6 +54,7 @@ var PhotosView = Backbone.View.extend({
 
     if ($(this).data("match") == "1") {
       $(this).addClass("match");
+      
     }
   },
 

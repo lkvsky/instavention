@@ -12,59 +12,110 @@
  */
  @import 'bootstrap';
 
- h1, h2, h3 {
-  text-align: center;
+ header {
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 75px;
+  position: fixed;
+  top: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  -moz-box-shadow: 0 0 40px #888;
+  -webkit-box-shadow: 0 0 40px #888;
+  box-shadow: 0 0 40px #888;
  }
 
- #gameboard {
-  margin-top: 30px;
+ h1 {
+  font-size: 55px;
+ }
+
+ h2, h3 {
+    text-align: center;
+ }
+
+ body {
+    margin-top: 100px;
+ }
+
+ a, a:visited, a:hover {
+  color: #C2A7C9;
+ }
+
+ .log-in {
+  position: absolute;
+  top: 20px;
+  right: 5%;
+ }
+
+ #reset-game {
+  position: relative;
+  left: 50px;
+  height: 50px;
+  width: 120px;
+  background-color: black;
+  color: white;
+  border: 1px solid #888;
+ }
+
+ .btn-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: 15px;
  }
 
  .stats {
-  margin-right: 50px;
+    margin-right: 50px;
  }
 
- .grid img:hover, div.cover:hover {
-  -moz-box-shadow: 0 0 30px #888;
-  -webkit-box-shadow: 0 0 30px #888;
-  box-shadow: 0 0 30px #888;
+ .stats img {
+    border: 1px solid #888;
+ }
+
+ .grid img:hover, div.cover:hover, #reset-game:hover {
+    -moz-box-shadow: 0 0 30px #888;
+    -webkit-box-shadow: 0 0 30px #888;
+    box-shadow: 0 0 30px #888;
  }
 
  .grid img, .grid .cover, .stats img {
-  -moz-box-shadow: 0 0 5px #888;
-  -webkit-box-shadow: 0 0 5px #888;
-  box-shadow: 0 0 5px #888;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px #888;
+    box-shadow: 0 0 5px #888;
  }
 
  .tile {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
  }
 
  .cover {
-  width: 140px;
-  height: 140px;
-  background-image: url('question.jpeg');
-  border: 5px solid black;
+    width: 140px;
+    height: 140px;
+    background-image: url('question.jpeg');
+    border: 5px solid black;
  }
 
  .hidden {
-  opacity: 0;
+    opacity: 0;
  }
 
  .uncover {
-  opacity: 1;
-  border: 5px solid black;
+    opacity: 1;
+    border: 5px solid black;
  }
 
  .bomb {
-  border: 5px solid red;
+    border: 5px solid red;
  }
 
  .match {
-  border: 5px solid green;
+    border: 5px solid green;
  }
 
  .game-over {
-  opacity: 0.5;
-  border: 5px solid white;
+    opacity: 0.3;
+    border: 5px solid white;
  }
