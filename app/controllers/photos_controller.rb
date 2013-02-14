@@ -14,14 +14,14 @@ class PhotosController < ApplicationController
     redirect_to root_path if @user.nil?
 
     photos = Instagram.user_media_feed(:access_token => session[:access_token],
-                                         :count => 40).data
+                                         :count => 25).data
 
     photos.each do |photo|
-      unless @user.photo_urls.include?(photo.images.low_resolution.url)
+      # unless @user.photo_urls.include?(photo.images.low_resolution.url)
         @user.photos.create(:url => photo.images.low_resolution.url,
                       :game_match => 0,
                       :game_bomb => 0)
-      end
+      # end
     end
 
     redirect_to photos_path

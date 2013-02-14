@@ -20,10 +20,14 @@
   margin-top: 30px;
  }
 
+ .stats {
+  margin-right: 50px;
+ }
+
  .grid img:hover, div.cover:hover {
-  -moz-box-shadow: 0 0 30px #9D6B84;
-  -webkit-box-shadow: 0 0 30px #9D6B84;
-  box-shadow: 0 0 30px #9D6B84;
+  -moz-box-shadow: 0 0 30px #888;
+  -webkit-box-shadow: 0 0 30px #888;
+  box-shadow: 0 0 30px #888;
  }
 
  .grid img, .grid .cover, .stats img {
@@ -33,13 +37,14 @@
  }
 
  .tile {
-  margin: 10px;
+  margin-bottom: 10px;
  }
 
  .cover {
   width: 140px;
   height: 140px;
-  background-color: black;
+  background-image: url('question.jpeg');
+  border: 5px solid black;
  }
 
  .hidden {
@@ -48,7 +53,18 @@
 
  .uncover {
   opacity: 1;
-  [data-bomb="1"] {
-    border: 10px solid red;
-  }
+  border: 5px solid black;
+ }
+
+ .bomb {
+  border: 5px solid red;
+ }
+
+ .match {
+  border: 5px solid green;
+ }
+
+ .game-over {
+  opacity: 0.5;
+  border: 5px solid white;
  }

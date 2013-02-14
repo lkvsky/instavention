@@ -1,30 +1,32 @@
 <h1>#instavention</h1>
 
+<button id="reset-game" type="button" class="btn btn-primary">New Game</button>
+
 <div class="row" id="gameboard">
 </div>
 
 <script type="text/template" id="grid-tpl">
+  <div class="span3 stats">
+    <h3>#match</h3>
+    <div class="tile">
+      <img src="{{= match.attributes.url }}" class="match">
+    </div>
+    <h3>#nofilter</h3>
+    <div class="tile">
+      <img src="{{= bomb.attributes.url }}" class="bomb">
+    </div>
+  </div>
   <div class="span8 grid">
     {{ _.each(grid, function(row) { }}
     <div class="row">
       {{ _.each(row, function(img) { }}
-      <div class="span2 tile" data-bomb="{{= img.attributes.game_bomb }}" data-match="{{= img.attributes.game_match }}">
+      <div class="span2 tile">
         <div class="cover">
-          <img src="{{= img.attributes.url }}" class="hidden">
+          <img src="{{= img.attributes.url }}" class="hidden" data-bomb="{{= img.attributes.game_bomb }}" data-match="{{= img.attributes.game_match }}">
         </div>
       </div>
      {{ }); }}
     </div>
     {{ }); }}
   </div>
-  <div class="span3 stats">
-    <h3>#match</h3>
-    <div class="tile">
-      <img src="{{= match.attributes.url }}">
-    </div>
-    <h3>#nofilter</h3>
-    <div class="tile">
-      <img src="{{= bomb.attributes.url }}">
-    </div>
-</div>
 </script>

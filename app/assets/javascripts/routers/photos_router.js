@@ -9,6 +9,6 @@ var InstaventionRouter = Backbone.Router.extend({
   },
 
   index: function() {
-    new PhotosView(this.photos, this.user);
+    new PhotosView({collection: this.photos});
   }
 });

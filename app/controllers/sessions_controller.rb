@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
     user.access_token = nil
     session[:access_token] = nil
+    user.photos.delete_all
 
     redirect_to root_path
   end

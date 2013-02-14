@@ -5,10 +5,11 @@ var PhotosView = Backbone.View.extend({
   NUM_MATCHES: 4,
   NUM_BOMBS: 3,
 
-  initialize: function(collection) {
-    this.collection = collection;
+  el: "#gameboard",
 
+  initialize: function() {
     _.bindAll(this, "resetGame");
+
     this.collection.bind("reset", this.resetGame, this);
 
     _.templateSettings = {
@@ -17,18 +18,43 @@ var PhotosView = Backbone.View.extend({
     };
   },
 
-  // Rendering
+  // Rendering and event binding
 
   renderGame: function() {
     var template = _.template($("#grid-tpl").html());
-    $("#gameboard").html(template({grid: this.grid, bomb: this.bombedModel, match: this.matchedModel}));
-    $(".cover").on("click", function(event) {
-      $(this).removeClass("cover");
-    });
-    $(".grid img").on("click", function(event) {
-      $(this).removeClass("hidden");
-      $(this).addClass("uncover");
-    });
+
+    this.$el.html(template({grid: this.grid, bomb: this.bombedModel, match: this.matchedModel}));
+    this.bindEvents();
+  },
+
+  bindEvents: function() {
+    $(".cover").on("click", this.flipTile);
+    $(".grid img").on("click", this.exposePhoto);
+    $("img[data-bomb='1']").on("click", this.gameOver);
+    $("#reset-game").on("click", this.resetGame);
+  },
+
+  gameOver: function() {
+    $(".cover").removeClass("cover");
+    $(".grid img").removeClass("hidden");
+    $(".grid img").addClass("game-over");
+
+    $(this).removeClass("game-over");
+    $(this).addClass("bomb");
+    $(this).addClass("uncover");
+  },
+
+  flipTile: function() {
+    $(this).removeClass("cover");
+  },
+
+  exposePhoto: function() {
+    $(this).removeClass("hidden");
+    $(this).addClass("uncover");
+
+    if ($(this).data("match") == "1") {
+      $(this).addClass("match");
+    }
   },
 
   resetGame: function() {
