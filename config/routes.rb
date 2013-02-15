@@ -3,5 +3,5 @@ Instavention::Application.routes.draw do
   resources :users
   resources :photos
 
-  root :to => "sessions#show"
+  root :to => "sessions#new"
 end

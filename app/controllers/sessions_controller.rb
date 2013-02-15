@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  def show
+  def new
     instagram_config
   end
 

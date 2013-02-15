@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :photos
+  attr_accessible :access_token, :instagram_id, :instagram_username, :instagram_profile
 
-  def photo_urls
-    photos.map { |photo| photo = photo.url }
-  end
+  has_many :photos
 end

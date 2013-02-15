@@ -2,8 +2,8 @@ var PhotosView = Backbone.View.extend({
 
   NUM_ROWS: 4,
   NUM_COLS: 4,
-  NUM_MATCHES: 4,
-  NUM_BOMBS: 3,
+  NUM_MATCHES: 5,
+  NUM_BOMBS: 1,
 
   el: "#gameboard",
 
@@ -54,7 +54,7 @@ var PhotosView = Backbone.View.extend({
 
     if ($(this).data("match") == "1") {
       $(this).addClass("match");
-      
+
     }
   },
 

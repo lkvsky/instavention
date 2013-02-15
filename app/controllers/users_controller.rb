@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
       redirect_to new_photo_path
     rescue
-      redirect_to session_path
+      redirect_to new_session_path
     end
   end
 
@@ -37,7 +37,9 @@ class UsersController < ApplicationController
         user.instagram_profile = response[:user][:profile_picture]
         user.save!
       else
-        user = User.new(response[:user])
+        user = User.new(:instagram_id => response[:user][:id],
+                        :instagram_username => response[:user][:username],
+                        :instagram_profile => response[:user][:profile_picture])
         user.access_token = response[:access_token]
         user.save!
       end
