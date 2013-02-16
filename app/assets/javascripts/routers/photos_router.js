@@ -6,6 +6,7 @@ var InstaventionRouter = Backbone.Router.extend({
   initialize: function() {
     this.photos = new PhotosCollection();
     this.photos.fetch();
+    this.users = new UsersCollection();
   },
 
   index: function() {

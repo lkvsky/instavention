@@ -1,14 +1,20 @@
 class UsersController < ApplicationController
   def new
-    begin
+    if params[:code]
       response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
       user = save_user(response)
+      
       session[:access_token] = user.access_token
+    else
+      user = User.new
+      user.instagram_username = "Guest"
+      user.access_token = "guest"
+      user.save!
 
-      redirect_to new_photo_path
-    rescue
-      redirect_to new_session_path
+      session[:access_token] = user.access_token
     end
+
+    redirect_to new_photo_path
   end
 
   def show

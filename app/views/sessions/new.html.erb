@@ -1,8 +1,11 @@
 <div class="row-fluid">
   </div class="span4">
-    <div id="welcome">
-      <h3 id="tag-line">one bad photo spoils the feed</h3>
-      <%= button_to "Log in with Instagram", instagram_log_in, :id => "log-in", :class => "btn btn-success btn-large" %>
+    <div class="welcome">
+      <h2 class="tag-line">one bad photo spoils the feed</h3>
+      <div class="log-in">
+        <%= button_to "Log in with Instagram", session_path, :class => "btn btn-success btn-large" %>
+        <%= link_to "Don't use Instagram? Play as a guest", new_user_path %>
+      </div>
     </div>
   </div>
 </div>

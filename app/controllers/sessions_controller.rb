@@ -1,6 +1,12 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
+  end
+
+  def create
     instagram_config
+
+    redirect_to instagram_log_in
   end
 
   def destroy
@@ -20,5 +26,9 @@ class SessionsController < ApplicationController
         config.client_id = CLIENT_ID
         config.client_secret = CLIENT_SECRET
       end
+    end
+
+    def instagram_log_in
+      "https://api.instagram.com/oauth/authorize/?client_id=#{CLIENT_ID}&redirect_uri=#{CALLBACK_URL}&response_type=code"
     end
 end

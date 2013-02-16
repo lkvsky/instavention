@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#welcome {
+.welcome {
   background-color: black;
   margin-top: 50px;
   border-radius: 4px;
@@ -11,19 +11,20 @@
   -moz-box-shadow: 0 0 10px #888;
   -webkit-box-shadow: 0 0 10px #888;
   box-shadow: 0 0 10px #888;
-  width: 450px;
+  width: 460px;
   height: 400px;
   position: relative;
   left: 25%;
  }
 
-#tag-line {
+.tag-line {
   color: white;
-  margin-top: 50px;
+  margin-top: 25px;
  }
 
- #log-in {
+.log-in {
   position: relative;
-  top: 325px;
-  left: 28%;
+  top: 335px;
+  text-align: center;
  }
+

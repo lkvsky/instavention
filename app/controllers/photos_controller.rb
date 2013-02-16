@@ -18,8 +18,12 @@ class PhotosController < ApplicationController
     @user = User.find_by_access_token(session[:access_token])
     redirect_to root_path if @user.nil?
 
-    photos = Instagram.user_media_feed(:access_token => session[:access_token],
+    if @user.access_token == "guest"
+      photos = Instagram.media_popular
+    else
+      photos = Instagram.user_media_feed(:access_token => session[:access_token],
                                          :count => 25).data
+    end
 
     photos.each do |photo|
         @user.photos.create(:url => photo.images.low_resolution.url,

@@ -5,6 +5,8 @@ var PhotosView = Backbone.View.extend({
   NUM_MATCHES: 5,
   NUM_BOMBS: 1,
 
+  revealedMatches: 0,
+
   el: "#gameboard",
 
   initialize: function() {
@@ -34,6 +36,14 @@ var PhotosView = Backbone.View.extend({
     $("#reset-game").on("click", this.resetGame);
   },
 
+  gameWon: function() {
+    if (this.revealedMatches == this.NUM_MATCHES) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
   gameOver: function() {
     $(".cover").removeClass("cover");
     $(".grid img").removeClass("hidden");
@@ -54,11 +64,12 @@ var PhotosView = Backbone.View.extend({
 
     if ($(this).data("match") == "1") {
       $(this).addClass("match");
-
+      this.revealedMatches += 1;
     }
   },
 
   resetGame: function() {
+    this.revealedMatches = 0;
     this.makeGrid();
     this.initializeGridSlots();
     this.chooseMatch();
