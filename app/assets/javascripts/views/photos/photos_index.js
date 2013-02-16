@@ -5,9 +5,10 @@ var PhotosView = Backbone.View.extend({
   NUM_MATCHES: 5,
   NUM_BOMBS: 1,
 
-  gamesWon: 0,
-
-  gamesLost: 0,
+  gameStats: {
+    gamesWon: 0,
+    gamesLost: 0
+  },
 
   el: "#gameboard",
 
@@ -72,9 +73,12 @@ var PhotosView = Backbone.View.extend({
 
   increaseWin: function() {
     var uncovered = $(".grid img.match");
-    if (uncovered.length == this.NUM_MATCHES) {
-      this.gamesWon += 1;
-      $("#win-count").html(this.gamesWon);
+    if ($(".grid img").hasClass("stats-calculated")) {
+      return;
+    } else if (uncovered.length == this.NUM_MATCHES) {
+      this.gameStats.gamesWon += 1;
+      $(".grid img").addClass("stats-calculated");
+      $("#win-count").html(this.gameStats.gamesWon);
       $(".cover").removeClass("cover");
       $(".grid img").removeClass("hidden");
       $(".grid img").addClass("game-over");
@@ -84,9 +88,12 @@ var PhotosView = Backbone.View.extend({
 
   increaseLoss: function() {
     var bomb = $("img[data-bomb='1']");
-    if (bomb.hasClass("uncover")) {
-      this.gamesLost += 1;
-      $("#loss-count").html(this.gamesLost);
+    if ($(".grid img").hasClass("stats-calculated")) {
+      return;
+    } else if (bomb.hasClass("uncover")) {
+      this.gameStats.gamesLost += 1;
+      $(".grid img").addClass("stats-calculated");
+      $("#loss-count").html(this.gameStats.gamesLost);
     }
   },
 
