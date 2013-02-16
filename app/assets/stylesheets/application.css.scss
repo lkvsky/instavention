@@ -21,25 +21,47 @@
   height: 75px;
   position: absolute;
   top: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 5px;
   -moz-box-shadow: 0 0 40px #888;
   -webkit-box-shadow: 0 0 40px #888;
   box-shadow: 0 0 40px #888;
  }
 
- h1 {
-  font-size: 55px;
+ .header-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+ }
+
+ .header-content h1 {
+  display: inline;
+ }
+
+ .header-content img {
+  height: 75px;
+  position: fixed;
+  top: 0px;
+  right: 0%;
+  border-radius: none;
+ }
+
+ .greeting {
+  position: absolute;
+  right: 10%;
+  top: 35%;
+  font-size: 1.25em;
  }
 
  h2, h3 {
   text-align: center;
  }
 
- body {
-  margin-top: 100px;
-  padding-bottom: 10px;
+ .container {
+  margin-top: 110px;
+ }
+
+ .stats {
+  padding-left: 10px;
+  display: inline-block;
  }
 
  a, a:visited, a:hover {
@@ -48,10 +70,4 @@
 
  img {
   border-radius: 4px;
- }
-
- .log-in {
-  position: absolute;
-  top: 20px;
-  right: 5%;
  }

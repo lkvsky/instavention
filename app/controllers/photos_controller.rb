@@ -23,6 +23,8 @@ class PhotosController < ApplicationController
 
     photos.each do |photo|
         @user.photos.create(:url => photo.images.low_resolution.url,
+                      :caption => photo.caption,
+                      :byline => photo.user.username,
                       :game_match => 0,
                       :game_bomb => 0)
     end

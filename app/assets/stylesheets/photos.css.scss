@@ -2,20 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*#reset-game {
-  position: relative;
-  left: 50px;
-  height: 50px;
-  width: 120px;
-  background-color: #9CBA7F;
-  color: white;
-  border: 1px solid #888;
- }
-
-#reset-game:hover {
-  background-color: #82a85e;
-}*/
-
  .btn-text {
   font-size: 1.5em;
   font-weight: bold;
@@ -29,50 +15,52 @@
  }
 
  .stats img {
-    border: 1px solid #888;
+  border: 1px solid #888;
  }
 
  .grid img:hover, div.cover:hover {
-    -moz-box-shadow: 0 0 30px #888;
-    -webkit-box-shadow: 0 0 30px #888;
-    box-shadow: 0 0 30px #888;
+  -moz-box-shadow: 0 0 30px #888;
+  -webkit-box-shadow: 0 0 30px #888;
+  box-shadow: 0 0 30px #888;
  }
 
  .grid img, .grid .cover, .stats img {
-    -moz-box-shadow: 0 0 5px #888;
-    -webkit-box-shadow: 0 0 5px #888;
-    box-shadow: 0 0 5px #888;
+  -moz-box-shadow: 0 0 5px #888;
+  -webkit-box-shadow: 0 0 5px #888;
+  box-shadow: 0 0 5px #888;
  }
 
  .tile {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
  }
 
  .cover {
-    width: 140px;
-    height: 140px;
-    background-image: url('question-roid.jpeg');
-    border: 5px solid white;
+  width: 140px;
+  height: 110px;
+  background-color: black;
+  border: 5px solid white;
+  border-bottom: 35px solid white;
+  border-radius: 4px;
  }
 
  .hidden {
-    opacity: 0;
+  opacity: 0;
  }
 
  .uncover {
-    opacity: 1;
-    border: 5px solid black;
+  opacity: 1;
+  border: 5px solid black;
  }
 
  .bomb {
-    border: 5px solid red;
+  border: 5px solid red;
  }
 
  .match {
-    border: 5px solid #9CBA7F;
+  border: 5px solid #9CBA7F;
  }
 
  .game-over {
-    opacity: 0.3;
-    border: 5px solid white;
+  opacity: 0.3;
+  border: 5px solid white;
  }
