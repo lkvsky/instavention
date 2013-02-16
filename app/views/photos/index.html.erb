@@ -1,16 +1,27 @@
+<div id="reset-game">
+  <div class="reset-content">
+    New Game
+  </div>
+</div>
+
 <div class="row" id="gameboard">
 </div>
 
 <script type="text/template" id="grid-tpl">
-  <div class="span3 stats">
-    <button id="reset-game" class="btn btn-success">New Game </button>
-    <h3>#match</h3>
-    <div class="tile">
-      <img src="{{= match.attributes.url }}">
+  <div class="span3 play">
+    <div class="span3">
+      
+      <h3>{{= match.attributes.byline }}</h3>
+      <div class="tile">
+        <img src="{{= match.attributes.url }}">
+      </div>
     </div>
-    <h3>#nofilter</h3>
-    <div class="tile">
-      <img src="{{= bomb.attributes.url }}">
+
+    <div class="span3">
+      <h3>{{= bomb.attributes.byline }}</h3>
+      <div class="tile">
+        <img src="{{= bomb.attributes.url }}">
+      </div>
     </div>
   </div>
 

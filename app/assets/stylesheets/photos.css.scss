@@ -2,19 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
- .btn-text {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
-  top: 15px;
- }
-
- .stats {
+ .play {
   margin-right: 50px;
  }
 
- .stats img {
+ .play img {
   border: 1px solid #888;
  }
 
@@ -24,7 +16,7 @@
   box-shadow: 0 0 30px #888;
  }
 
- .grid img, .grid .cover, .stats img {
+ .grid img, .grid .cover, .play img {
   -moz-box-shadow: 0 0 5px #888;
   -webkit-box-shadow: 0 0 5px #888;
   box-shadow: 0 0 5px #888;
@@ -41,6 +33,15 @@
   border: 5px solid white;
   border-bottom: 35px solid white;
   border-radius: 4px;
+ }
+
+ .cover-text {
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  top: 40%;
+  left: 42%;
  }
 
  .hidden {
@@ -63,4 +64,28 @@
  .game-over {
   opacity: 0.3;
   border: 5px solid white;
+ }
+
+ #reset-game {
+  background-color: #9CBA7F;
+  position: fixed;
+  top: 0px;
+  left: 280px;
+  height: 75px;
+  width: 110px;
+  color: white;
+  font-size: 1.25em;
+ }
+
+ #reset-game:hover {
+  background-color: #82a85e;
+ }
+
+ .reset-content {
+  padding-top: 30px;
+  text-align: center;
+ }
+
+ #gameboard img {
+  border-radius: 4px;
  }

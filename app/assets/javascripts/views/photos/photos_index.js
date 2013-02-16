@@ -20,6 +20,10 @@ var PhotosView = Backbone.View.extend({
     };
   },
 
+  events: {
+    "click img": "gameWon"
+  },
+
   // Rendering and event binding
 
   renderGame: function() {
@@ -34,14 +38,6 @@ var PhotosView = Backbone.View.extend({
     $(".grid img").on("click", this.exposePhoto);
     $("img[data-bomb='1']").on("click", this.gameOver);
     $("#reset-game").on("click", this.resetGame);
-  },
-
-  gameWon: function() {
-    if (this.revealedMatches == this.NUM_MATCHES) {
-      return true;
-    } else {
-      return false;
-    }
   },
 
   gameOver: function() {
@@ -64,12 +60,17 @@ var PhotosView = Backbone.View.extend({
 
     if ($(this).data("match") == "1") {
       $(this).addClass("match");
-      this.revealedMatches += 1;
+    }
+  },
+
+  gameWon: function() {
+    var uncovered = $(".grid img.match");
+    if (uncovered.length == this.NUM_MATCHES) {
+      console.log("Game won");
     }
   },
 
   resetGame: function() {
-    this.revealedMatches = 0;
     this.makeGrid();
     this.initializeGridSlots();
     this.chooseMatch();
