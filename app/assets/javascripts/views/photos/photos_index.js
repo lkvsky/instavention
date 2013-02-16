@@ -23,8 +23,7 @@ var PhotosView = Backbone.View.extend({
   },
 
   events: {
-    "click img": "increaseWin",
-    "click img": "increaseLoss"
+    "click img": "checkStats"
   },
 
   // Rendering and event binding
@@ -64,6 +63,11 @@ var PhotosView = Backbone.View.extend({
     if ($(this).data("match") == "1") {
       $(this).addClass("match");
     }
+  },
+
+  checkStats: function() {
+    this.increaseWin();
+    this.increaseLoss();
   },
 
   increaseWin: function() {
