@@ -5,7 +5,9 @@ var PhotosView = Backbone.View.extend({
   NUM_MATCHES: 5,
   NUM_BOMBS: 1,
 
-  revealedMatches: 0,
+  gamesWon: 0,
+
+  gamesLost: 0,
 
   el: "#gameboard",
 
@@ -21,7 +23,8 @@ var PhotosView = Backbone.View.extend({
   },
 
   events: {
-    "click img": "gameWon"
+    "click img": "increaseWin",
+    "click img": "increaseLoss"
   },
 
   // Rendering and event binding
@@ -36,11 +39,11 @@ var PhotosView = Backbone.View.extend({
   bindEvents: function() {
     $(".cover").on("click", this.flipTile);
     $(".grid img").on("click", this.exposePhoto);
-    $("img[data-bomb='1']").on("click", this.gameOver);
+    $("img[data-bomb='1']").on("click", this.exposeBomb);
     $("#reset-game").on("click", this.resetGame);
   },
 
-  gameOver: function() {
+  exposeBomb: function() {
     $(".cover").removeClass("cover");
     $(".grid img").removeClass("hidden");
     $(".grid img").addClass("game-over");
@@ -63,10 +66,23 @@ var PhotosView = Backbone.View.extend({
     }
   },
 
-  gameWon: function() {
+  increaseWin: function() {
     var uncovered = $(".grid img.match");
     if (uncovered.length == this.NUM_MATCHES) {
-      console.log("Game won");
+      this.gamesWon += 1;
+      $("#win-count").html(this.gamesWon);
+      $(".cover").removeClass("cover");
+      $(".grid img").removeClass("hidden");
+      $(".grid img").addClass("game-over");
+      $(".grid img.match").removeClass("game-over");
+    }
+  },
+
+  increaseLoss: function() {
+    var bomb = $("img[data-bomb='1']");
+    if (bomb.hasClass("uncover")) {
+      this.gamesLost += 1;
+      $("#loss-count").html(this.gamesLost);
     }
   },
 

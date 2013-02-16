@@ -17,6 +17,25 @@
   left: 25%;
  }
 
+.directions {
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 90px;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 1.8em;
+  font-weight: bold;
+ }
+
+ .underline {
+  text-decoration: underline;
+ }
+
+.dramatic {
+  font-size: 1.6em;
+ }
+
 .tag-line {
   color: white;
   margin-top: 25px;
@@ -24,7 +43,7 @@
 
 .log-in {
   position: relative;
-  top: 335px;
+  top: 115px;
   text-align: center;
  }
 

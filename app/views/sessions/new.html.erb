@@ -2,9 +2,13 @@
   </div class="span4">
     <div class="welcome">
       <h2 class="tag-line">one bad photo spoils the feed</h3>
+        <div class="directions">
+          <p><em>Play with your feed:</em></p>
+          <p>Click on a tile to reveal a photo. Uncover <span class="underline">five matches</span> and win, but unleash a <span class="underline">photo bomb</span> and it's time for an <span class="dramatic">#instavention</span>.</p>
+        </div>
       <div class="log-in">
         <%= button_to "Log in with Instagram", session_path, :class => "btn btn-success btn-large" %>
-        <em><%= link_to "Don't use Instagram? Play as a guest", new_user_path %></em>
+        <em><%= link_to "Not on Instagram? Play as a guest.", new_user_path %></em>
       </div>
     </div>
   </div>

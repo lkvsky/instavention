@@ -13,8 +13,13 @@ class SessionsController < ApplicationController
     user = User.find_by_access_token(session[:access_token])
     Photo.delete_by_user(user)
 
-    user.access_token = nil
-    session[:access_token] = nil
+    if user.access_token == "guest"
+      user.destroy
+      session[:access_token] = nil
+    else
+      user.access_token = nil
+      session[:access_token] = nil
+    end
 
     redirect_to root_path
   end
