@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def new
     if params[:error]
       redirect_to root_path
-    elsif params[:code] != "400"
+    elsif params[:code]
       response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
       user = save_user(response)
       
