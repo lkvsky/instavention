@@ -2,8 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#gameboard {
+  margin-bottom: 50px;
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+}
+  
  .play {
-  margin-right: 50px;
+  margin-right: 25px;
   text-align: center;
  }
 
@@ -31,18 +40,11 @@
   width: 140px;
   height: 110px;
   background-color: black;
-  border: 5px solid white;
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid white;
   border-bottom: 35px solid white;
   border-radius: 4px;
- }
-
- .cover-text {
-  font-size: 3em;
-  font-weight: bold;
-  color: white;
-  position: relative;
-  top: 40%;
-  left: 42%;
  }
 
  .hidden {
@@ -51,11 +53,11 @@
 
  .uncover {
   opacity: 1;
-  border: 5px solid black;
+  border: 5px solid #7f9cba;
  }
 
  .bomb {
-  border: 5px solid red;
+  border: 5px solid #ba7f9c;
  }
 
  .match {
@@ -70,7 +72,7 @@
  #reset-game {
   background-color: #9CBA7F;
   position: fixed;
-  top: 0px;
+  top: 0;
   left: 280px;
   height: 75px;
   width: 110px;
@@ -85,6 +87,7 @@
  .reset-content {
   padding-top: 25px;
   text-align: center;
+  text-shadow: 2px 2px 2px #888;
  }
 
  #gameboard img {
@@ -93,14 +96,18 @@
 
  .stats {
   height: 75px;
-  width: 243px;
+  width: 250px;
   position: fixed;
-  top: 0px;
+  top: 0;
   left: 390px;
   background-color: #ba7f9c;
+  display: inline-block;
  }
+
  .stats-content {
   padding-top: 12px;
   color: white;
   font-size: 1.25em;
+  text-shadow: 2px 2px 2px #888;
+  text-align: center;
  }

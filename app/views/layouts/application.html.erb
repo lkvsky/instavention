@@ -7,25 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <% if current_user %>
-        <div class="greeting">
-          <div class="greeting-content">
-            <%= link_to "Hello, #{current_user.instagram_username}!", photos_path %> | <%= link_to "Log Out?", session_path, :method => :delete %>
+  <div class="wrapper">
+    <header>
+      <% if current_user %>
+          <div class="greeting">
+            <div class="greeting-content">
+              <%= link_to "Hello, #{current_user.instagram_username}!", photos_path %> | <%= link_to "Log Out?", session_path, :method => :delete %>
+            </div>
+            <% unless current_user.instagram_profile.nil? %>
+              <%= image_tag current_user.instagram_profile, :id => "profile-picture" %>
+            <% end %>
           </div>
-          <% unless current_user.instagram_profile.nil? %>
-            <%= image_tag current_user.instagram_profile, :id => "profile-picture" %>
-          <% end %>
-        </div>
-      <% end %>
-    <div class="header-content">
-      <h1><%= link_to "#instavention", photos_path %></h1>
+        <% end %>
+      <div class="header-content">
+        <h1><em><%= link_to "#instavention", photos_path %></em></h1>
+      </div>
+    </header>
+    <div class="container">
+
+      <%= yield %>
+
     </div>
-  </header>
-  <div class="container">
-
-    <%= yield %>
-
   </div>
 </body>
 </html>

@@ -23,22 +23,31 @@ class PhotosController < ApplicationController
     else
       photos = Instagram.user_media_feed(:access_token => session[:access_token],
                                          :count => 25).data
-    end
-
-    photos.each do |photo|
-      if photo.caption
-        caption = photo.caption.text
-      else
-        caption = ""
+      if photos.count < 16
+        photos = Instagram.media_popular
       end
-
-        @user.photos.create(:url => photo.images.low_resolution.url,
-                      :caption => caption,
-                      :byline => photo.user.username,
-                      :game_match => 0,
-                      :game_bomb => 0)
     end
+
+    save_photos(photos)
 
     redirect_to photos_path
   end
+
+  private
+
+    def save_photos(photos)
+      photos.each do |photo|
+        if photo.caption
+          caption = photo.caption.text
+        else
+          caption = ""
+        end
+
+          @user.photos.create(:url => photo.images.low_resolution.url,
+                        :caption => caption,
+                        :byline => photo.user.username,
+                        :game_match => 0,
+                        :game_bomb => 0)
+      end
+    end
 end
