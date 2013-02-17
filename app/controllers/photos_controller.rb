@@ -37,17 +37,12 @@ class PhotosController < ApplicationController
 
     def save_photos(photos)
       photos.each do |photo|
-        if photo.caption
-          caption = photo.caption.text
-        else
-          caption = ""
-        end
+        next if @user.has_url?(photo.images.low_resolution.url)
 
-          @user.photos.create(:url => photo.images.low_resolution.url,
-                        :caption => caption,
-                        :byline => photo.user.username,
-                        :game_match => 0,
-                        :game_bomb => 0)
+        @user.photos.create(:url => photo.images.low_resolution.url,
+                      :byline => photo.user.username,
+                      :game_match => 0,
+                      :game_bomb => 0)
       end
     end
 end
