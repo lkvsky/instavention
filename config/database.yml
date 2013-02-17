@@ -22,4 +22,4 @@ production:
   adapter: postgresql
   database: d7tdnmk25j24mh
   pool: 5
-  timeout: 5432
+  timeout: 5000

@@ -19,17 +19,28 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
+    user_obj = {
+      :id => user.id,
+      :instagram_profile => user.instagram_profile,
+      :instagram_username => user.instagram_username
+    }
 
     respond_to do |format|
-      format.json { render :json => user}
+      format.json { render :json => user_obj}
     end
   end
 
   def index
     users = User.all
 
+    user_json = users.map do |user|
+      { :id => user.id,
+        :instagram_profile => user.instagram_profile,
+        :instagram_username => user.instagram_username }
+    end
+
     respond_to do |format|
-      format.json { render :json => users }
+      format.json { render :json => user_json }
     end
   end
 

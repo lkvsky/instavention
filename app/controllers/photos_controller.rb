@@ -22,7 +22,7 @@ class PhotosController < ApplicationController
       photos = Instagram.media_popular
     else
       photos = Instagram.user_media_feed(:access_token => session[:access_token],
-                                         :count => 25).data
+                                         :count => 40).data
       if photos.count < 16
         photos = Instagram.media_popular
       end
