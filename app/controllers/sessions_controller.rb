@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     user = User.find_by_access_token(session[:access_token])
     Photo.delete_by_user(user)
 
-    if user.access_token == "guest"
+    if user.instagram_username == "Guest"
       user.destroy
       session[:access_token] = nil
     else

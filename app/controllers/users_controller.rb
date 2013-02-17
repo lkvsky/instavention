@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     else
       user = User.new
       user.instagram_username = "Guest"
-      user.access_token = "guest"
+      user.access_token = SecureRandom.urlsafe_base64
       user.save!
 
       session[:access_token] = user.access_token

@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
     @user = User.find_by_access_token(session[:access_token])
     redirect_to root_path if @user.nil?
 
-    if @user.access_token == "guest"
+    if @user.instagram_username == "Guest"
       photos = Instagram.media_popular
     else
       photos = Instagram.user_media_feed(:access_token => session[:access_token],
