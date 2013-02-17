@@ -20,6 +20,6 @@ test:
 
 production:
   adapter: postgresql
-  database: instavention_production
+  database: d7tdnmk25j24mh
   pool: 5
-  timeout: 5000
+  timeout: 5432
