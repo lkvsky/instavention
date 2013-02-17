@@ -20,8 +20,8 @@
 
  .wrapper {
   height: 100%;
-  width: 85%;
-  min-width: 930px;
+  width: 80%;
+  min-width: 920px;
   margin: auto;
   background-image: url("creampaper.png");
   border: 1px solid #CCC;
@@ -42,6 +42,7 @@
   -moz-box-shadow: 0 0 40px #888;
   -webkit-box-shadow: 0 0 40px #888;
   box-shadow: 0 0 40px #888;
+  z-index: 1;
  }
 
  .header-content {

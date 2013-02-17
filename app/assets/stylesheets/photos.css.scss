@@ -78,6 +78,7 @@
   width: 110px;
   color: white;
   font-size: 1.25em;
+  z-index: 2;
  }
 
  #reset-game:hover {
@@ -102,6 +103,7 @@
   left: 390px;
   background-color: #ba7f9c;
   display: inline-block;
+  z-index: 2;
  }
 
  .stats-content {
