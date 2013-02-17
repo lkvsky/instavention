@@ -83,6 +83,7 @@
 
  #reset-game:hover {
   background-color: #82a85e;
+  cursor: pointer;
  }
 
  .reset-content {
@@ -112,4 +113,17 @@
   font-size: 1.25em;
   text-shadow: 2px 2px 2px #888;
   text-align: center;
+ }
+
+ #game-status {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: black;
+ }
+
+ #win-status {
+  color: #9CBA7F;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 1px #888;
  }

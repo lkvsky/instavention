@@ -10,7 +10,9 @@ var PhotosView = Backbone.View.extend({
     gamesLost: 0
   },
 
-  el: "#gameboard",
+  exposedMatches: 0,
+
+  el: "#grid",
 
   initialize: function() {
     _.bindAll(this, "resetGame");
@@ -34,6 +36,19 @@ var PhotosView = Backbone.View.extend({
 
     this.$el.html(template({grid: this.grid, bomb: this.bombedModel, match: this.matchedModel}));
     this.bindEvents();
+    this.initializeStatus();
+  },
+
+  initializeStatus: function() {
+    $("#game-status").empty();
+
+    var winSpan = $("<span>");
+    var txtSpan = $("<span>");
+
+    winSpan.attr("id", "win-status").html("5");
+    txtSpan.html(" matches needed to win!");
+
+    $("#game-status").append(winSpan).append(txtSpan);
   },
 
   bindEvents: function() {
@@ -67,8 +82,19 @@ var PhotosView = Backbone.View.extend({
   },
 
   checkStats: function() {
+    this.updateStats();
     this.increaseWin();
     this.increaseLoss();
+  },
+
+  updateStats: function() {
+    var uncovered = $(".grid img.match");
+    if (uncovered === undefined) {
+      return;
+    } else {
+      var matchesLeft = this.NUM_MATCHES - uncovered.length;
+      $("#win-status").html(matchesLeft);
+    }
   },
 
   increaseWin: function() {
@@ -77,6 +103,7 @@ var PhotosView = Backbone.View.extend({
       return;
     } else if (uncovered.length == this.NUM_MATCHES) {
       this.gameStats.gamesWon += 1;
+      $("#game-status").html("You won!");
       $(".grid img").addClass("stats-calculated");
       $("#win-count").html(this.gameStats.gamesWon);
       $(".cover").removeClass("cover");
@@ -94,10 +121,13 @@ var PhotosView = Backbone.View.extend({
       this.gameStats.gamesLost += 1;
       $(".grid img").addClass("stats-calculated");
       $("#loss-count").html(this.gameStats.gamesLost);
+      $("#game-status").html("Uh oh! Looks like you need an #instavention.");
     }
   },
 
   resetGame: function() {
+    // $("#win-status").html("<span id='win-status'>5</span> matches needed to win!");
+    this.exposedMatches = 0;
     this.makeGrid();
     this.initializeGridSlots();
     this.chooseMatch();
