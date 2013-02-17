@@ -8,8 +8,12 @@
           <p>click on a tile to reveal a photo. uncover all five matches and win. if you unleash the photo bomb, you're in dire need of an <span class="dramatic">#instavention</span>.</p>
         </div>
       <div class="log-in">
-        <%= button_to "Log in with Instagram", session_path, :class => "btn btn-primary btn-large" %>
-        <em><%= link_to "Not on Instagram? Play as a guest.", new_user_path %></em>
+        <% if current_user %>
+          <%= button_to "Return to Game", photos_path, :method => "get", :class => "btn btn-primary btn-large" %>
+        <% else %>
+          <%= button_to "Log in with Instagram", session_path, :class => "btn btn-primary btn-large" %>
+          <em><%= link_to "Not on Instagram? Play as a guest.", new_user_path %></em>
+        <% end %>
       </div>
     </div>
   </div>
