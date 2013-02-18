@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
   def new
+    instagram_config
+
     @user = User.new
   end
 
   def create
-    instagram_config
-
     redirect_to instagram_log_in
   end
 
