@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    instagram_config
-
     @user = User.new
   end
 
@@ -25,13 +23,6 @@ class SessionsController < ApplicationController
   end
 
   private
-
-    def instagram_config
-      Instagram.configure do |config|
-        config.client_id = CLIENT_ID
-        config.client_secret = CLIENT_SECRET
-      end
-    end
 
     def instagram_log_in
       "https://api.instagram.com/oauth/authorize/?client_id=#{CLIENT_ID}&redirect_uri=#{CALLBACK_URL}&response_type=code"

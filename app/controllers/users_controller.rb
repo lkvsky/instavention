@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       
       session[:access_token] = user.access_token
 
-      redirect_to new_photo_path
+      redirect_to photos_path
     else
       user = User.new
       user.instagram_username = "Guest"
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
       session[:access_token] = user.access_token
 
-      redirect_to new_photo_path
+      redirect_to photos_path
     end
   end
 
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     }
 
     respond_to do |format|
+      format.html { redirect_to root_path}
       format.json { render :json => user_obj}
     end
   end
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
+      format.html { redirect_to root_path }
       format.json { render :json => user_json }
     end
   end

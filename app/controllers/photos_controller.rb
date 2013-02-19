@@ -2,47 +2,52 @@ class PhotosController < ApplicationController
   def index
     @user = User.find_by_access_token(session[:access_token])
 
-    respond_to do |format|
-      format.html do
-        if @user.nil?
-          redirect_to root_path
-        else
-          render :index
-        end
+    if !@user.nil?
+      if @user.photos.empty?
+        photos = fetch_photos(@user)
+      else
+        photos = @user.photos
       end
-      format.json { render :json => @user.photos }
-    end
-  end
 
-  def new
-    @user = User.find_by_access_token(session[:access_token])
-    redirect_to root_path if @user.nil?
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render :json => photos }
+      end
 
-    if @user.instagram_username == "Guest"
-      photos = Instagram.media_popular
+      save_photos(photos)
     else
-      photos = Instagram.user_media_feed(:access_token => session[:access_token],
-                                         :count => 40).data
-      if photos.count < 16
-        photos = Instagram.media_popular
-      end
+      redirect_to root_path
     end
-
-    save_photos(photos)
-
-    redirect_to photos_path
   end
 
   private
 
+    def fetch_photos(user)
+      if @user.instagram_username == "Guest"
+        photos = Instagram.media_popular
+      else
+        photos = Instagram.user_media_feed(:access_token => session[:access_token],
+                                           :count => 40).data
+        if photos.count < 16
+          photos = Instagram.media_popular
+        end
+      end
+
+      photos.map do |photo|
+        { :url => photo.images.low_resolution.url,
+        :byline => photo.user.username,
+        :game_match => 0,
+        :game_bomb => 0 }
+      end
+    end
+
     def save_photos(photos)
       photos.each do |photo|
-        next if @user.has_url?(photo.images.low_resolution.url)
+        next if @user.has_url?(photo[:url])
 
-        @user.photos.create(:url => photo.images.low_resolution.url,
-                      :byline => photo.user.username,
-                      :game_match => 0,
-                      :game_bomb => 0)
+        @user.photos.new(photo)
       end
+
+      @user.save
     end
 end
