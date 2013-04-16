@@ -14,6 +14,11 @@ var PhotosView = Backbone.View.extend({
 
   el: "#grid",
 
+  events: {
+    "click .grid img": "exposePhoto",
+    "click img[data-bomb='1']": "exposeBomb"
+  },
+
   initialize: function() {
     _.bindAll(this, "resetGame");
 
@@ -25,108 +30,48 @@ var PhotosView = Backbone.View.extend({
     };
   },
 
-  events: {
-    "click img": "checkStats"
-  },
-
   // Rendering and event binding
 
   renderGame: function() {
     var template = _.template($("#grid-tpl").html());
 
     this.$el.html(template({grid: this.grid, bomb: this.bombedModel, match: this.matchedModel}));
-    this.bindEvents();
     this.initializeStatus();
   },
 
   initializeStatus: function() {
-    $("#game-status").empty();
+    $(".game-status").empty();
 
     var winSpan = $("<span>");
     var txtSpan = $("<span>");
 
-    winSpan.attr("id", "win-status").html("5");
+    winSpan.attr("class", "win-status").html("5");
     txtSpan.html(" matches needed to win!");
 
-    $("#game-status").append(winSpan).append(txtSpan);
+    $(".game-status").append(winSpan).append(txtSpan);
   },
 
-  bindEvents: function() {
-    $(".cover").on("click", this.flipTile);
-    $(".grid img").on("click", this.exposePhoto);
-    $("img[data-bomb='1']").on("click", this.exposeBomb);
-    $("#reset-game").on("click", this.resetGame);
-  },
-
-  exposeBomb: function() {
+  exposeBomb: function(e) {
     $(".cover").removeClass("cover");
     $(".grid img").removeClass("hidden");
     $(".grid img").addClass("game-over");
 
-    $(this).removeClass("game-over");
-    $(this).addClass("bomb");
-    $(this).addClass("uncover");
+    $(e.target).removeClass("game-over");
+    $(e.target).addClass("bomb");
+    $(e.target).addClass("uncover");
   },
 
-  flipTile: function() {
-    $(this).removeClass("cover");
-  },
+  exposePhoto: function(e) {
+    $(e.target).closest(".cover").removeClass("cover");
+    $(e.target).removeClass("hidden");
+    $(e.target).addClass("uncover");
 
-  exposePhoto: function() {
-    $(this).removeClass("hidden");
-    $(this).addClass("uncover");
-
-    if ($(this).data("match") == "1") {
-      $(this).addClass("match");
-    }
-  },
-
-  checkStats: function() {
-    this.updateStats();
-    this.increaseWin();
-    this.increaseLoss();
-  },
-
-  updateStats: function() {
-    var uncovered = $(".grid img.match");
-    if (uncovered === undefined) {
-      return;
-    } else {
-      var matchesLeft = this.NUM_MATCHES - uncovered.length;
-      $("#win-status").html(matchesLeft);
-    }
-  },
-
-  increaseWin: function() {
-    var uncovered = $(".grid img.match");
-    if ($(".grid img").hasClass("stats-calculated")) {
-      return;
-    } else if (uncovered.length == this.NUM_MATCHES) {
-      this.gameStats.gamesWon += 1;
-      $("#game-status").html("You won!");
-      $(".grid img").addClass("stats-calculated");
-      $("#win-count").html(this.gameStats.gamesWon);
-      $(".cover").removeClass("cover");
-      $(".grid img").removeClass("hidden");
-      $(".grid img").addClass("game-over");
-      $(".grid img.match").removeClass("game-over");
-    }
-  },
-
-  increaseLoss: function() {
-    var bomb = $("img[data-bomb='1']");
-    if ($(".grid img").hasClass("stats-calculated")) {
-      return;
-    } else if (bomb.hasClass("uncover")) {
-      this.gameStats.gamesLost += 1;
-      $(".grid img").addClass("stats-calculated");
-      $("#loss-count").html(this.gameStats.gamesLost);
-      $("#game-status").html("Uh oh! Looks like you need an #instavention.");
+    if ($(e.target).data("match") == "1") {
+      $(e.target).addClass("match");
     }
   },
 
   resetGame: function() {
-    // $("#win-status").html("<span id='win-status'>5</span> matches needed to win!");
     this.exposedMatches = 0;
     this.makeGrid();
     this.initializeGridSlots();

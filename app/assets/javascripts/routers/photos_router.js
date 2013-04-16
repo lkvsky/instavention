@@ -3,13 +3,7 @@ var InstaventionRouter = Backbone.Router.extend({
     '': 'index'
   },
 
-  initialize: function() {
-    this.photos = new PhotosCollection();
-    this.photos.fetch();
-    this.users = new UsersCollection();
-  },
-
   index: function() {
-    new PhotosView({collection: this.photos});
+    new AppView();
   }
 });

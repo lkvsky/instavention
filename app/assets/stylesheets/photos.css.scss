@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#gameboard {
+.gameboard {
   margin-bottom: 50px;
   background-color: white;
   padding-top: 30px;
@@ -69,19 +69,22 @@
   border: 5px solid white;
  }
 
- #reset-game {
-  background-color: #9CBA7F;
+ #reset {
   position: fixed;
   top: 0;
   left: 280px;
+  z-index: 2;
+ }
+
+ .reset-game {
+  background-color: #9CBA7F;
   height: 75px;
   width: 110px;
   color: white;
   font-size: 1.25em;
-  z-index: 2;
  }
 
- #reset-game:hover {
+ .reset-game:hover {
   background-color: #82a85e;
   cursor: pointer;
  }
@@ -92,7 +95,7 @@
   text-shadow: 2px 2px 2px #888;
  }
 
- #gameboard img {
+ .gameboard img {
   border-radius: 4px;
  }
 
@@ -115,14 +118,14 @@
   text-align: center;
  }
 
- #game-status {
+ .game-status {
   text-align: center;
   font-size: 2em;
   font-weight: bold;
   color: black;
  }
 
- #win-status {
+ .win-status {
   color: #9CBA7F;
   font-size: 2.5em;
   text-shadow: 1px 1px 1px #888;
