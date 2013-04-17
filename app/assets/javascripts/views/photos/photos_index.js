@@ -1,14 +1,9 @@
-var PhotosView = Backbone.View.extend({
+var GridView = Backbone.View.extend({
 
   NUM_ROWS: 4,
   NUM_COLS: 4,
   NUM_MATCHES: 5,
   NUM_BOMBS: 1,
-
-  gameStats: {
-    gamesWon: 0,
-    gamesLost: 0
-  },
 
   exposedMatches: 0,
 
@@ -20,10 +15,6 @@ var PhotosView = Backbone.View.extend({
   },
 
   initialize: function() {
-    _.bindAll(this, "resetGame");
-
-    this.collection.bind("reset", this.resetGame, this);
-
     _.templateSettings = {
       interpolate: /\{\{\=(.+?)\}\}/g,
       evaluate: /\{\{(.+?)\}\}/g
@@ -32,23 +23,10 @@ var PhotosView = Backbone.View.extend({
 
   // Rendering and event binding
 
-  renderGame: function() {
+  render: function() {
     var template = _.template($("#grid-tpl").html());
 
     this.$el.html(template({grid: this.grid, bomb: this.bombedModel, match: this.matchedModel}));
-    this.initializeStatus();
-  },
-
-  initializeStatus: function() {
-    $(".game-status").empty();
-
-    var winSpan = $("<span>");
-    var txtSpan = $("<span>");
-
-    winSpan.attr("class", "win-status").html("5");
-    txtSpan.html(" matches needed to win!");
-
-    $(".game-status").append(winSpan).append(txtSpan);
   },
 
   exposeBomb: function(e) {
@@ -69,16 +47,6 @@ var PhotosView = Backbone.View.extend({
     if ($(e.target).data("match") == "1") {
       $(e.target).addClass("match");
     }
-  },
-
-  resetGame: function() {
-    this.exposedMatches = 0;
-    this.makeGrid();
-    this.initializeGridSlots();
-    this.chooseMatch();
-    this.chooseBomb();
-    this.fillGrid();
-    this.renderGame();
   },
 
   // Grid filling functions
@@ -102,32 +70,21 @@ var PhotosView = Backbone.View.extend({
     }
   },
 
-  chooseMatch: function() {
+  setGamePlay: function(attribute) {
     for (var i=0; i<this.collection.length; i++) {
       var model = this.collection.at(i);
-      model.set("game_match", 0);
+      model.set(attribute, 0);
     }
 
     var matchIndex = this.chooseImagePosition();
 
-    this.matchedModel = this.collection.at(matchIndex);
-    this.matchedModel.set("game_match", 1);
-
-    return this.matchedModel;
-  },
-
-  chooseBomb: function() {
-    for (var i=0; i<this.collection.length; i++) {
-      var model = this.collection.at(i);
-      model.set("game_bomb", 0);
+    if (attribute == "game_match") {
+      this.matchedModel = this.collection.at(matchIndex);
+      this.matchedModel.set(attribute, 1);
+    } else {
+      this.bombedModel = this.collection.at(matchIndex);
+      this.bombedModel.set(attribute, 1);
     }
-
-    var matchIndex = this.chooseImagePosition();
-
-    this.bombedModel = this.collection.at(matchIndex);
-    this.bombedModel.set("game_bomb", 1);
-
-    return this.bombedModel;
   },
 
    fillGrid: function() {

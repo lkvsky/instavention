@@ -4,6 +4,6 @@ var InstaventionRouter = Backbone.Router.extend({
   },
 
   index: function() {
-    new AppView();
+    new AppView({el: ".container"});
   }
 });
