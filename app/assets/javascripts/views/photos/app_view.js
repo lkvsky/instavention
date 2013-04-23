@@ -1,4 +1,4 @@
-var AppView = Backbone.View.extend({
+Instavention.Views.AppView = Backbone.View.extend({
   gameStats: {
     gamesWon: 0,
     gamesLost: 0
@@ -10,12 +10,12 @@ var AppView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.photos = new PhotosCollection();
+    this.photos = new Instavention.Collections.PhotosCollection();
     this.photos.fetch();
 
     this.photos.bind("reset", this.resetGame, this);
 
-    this.gridView = new GridView({collection: this.photos});
+    this.gridView = new Instavention.Views.GridView({collection: this.photos});
   },
 
   resetGame: function() {

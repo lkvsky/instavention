@@ -1,5 +1,5 @@
-var PhotosCollection = Backbone.Collection.extend({
-  model: Photo,
+Instavention.Collections.PhotosCollection = Backbone.Collection.extend({
+  model: Instavention.Models.Photo,
 
   url: '/photos'
 });

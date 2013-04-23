@@ -1,3 +1,3 @@
-var Photo = Backbone.Model.extend({
-  paramRoot: 'photo'
+Instavention.Models.Photo = Backbone.Model.extend({
+  urlRoot: '/photos'
 });

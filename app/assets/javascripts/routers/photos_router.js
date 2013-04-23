@@ -1,9 +1,9 @@
-var InstaventionRouter = Backbone.Router.extend({
+Instavention.Routers.InstaventionRouter = Backbone.Router.extend({
   routes: {
     '': 'index'
   },
 
   index: function() {
-    new AppView({el: ".container"});
+    new Instavention.Views.AppView({el: ".container"});
   }
 });

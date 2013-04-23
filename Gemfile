@@ -30,7 +30,8 @@ end
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'instagram'
-gem 'backbone-on-rails'
+# gem 'backbone-on-rails'
+gem 'backbone-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

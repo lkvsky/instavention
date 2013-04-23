@@ -1,3 +1,3 @@
-var User = Backbone.Model.extend({
-  paramRoot: 'user'
+Instavention.Models.User = Backbone.Model.extend({
+  urlRoot: '/users'
 });

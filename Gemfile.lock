@@ -29,27 +29,14 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
-    backbone-on-rails (0.9.10.0)
-      eco
-      ejs
-      jquery-rails
-      rails (>= 3.1)
+    backbone-rails (0.9.10)
+      rails (>= 3.0.0)
     better_errors (0.3.2)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
     bootstrap-sass (2.1.0.0)
     builder (3.0.4)
     coderay (1.0.8)
-    coffee-script (2.2.0)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.4.0)
-    eco (1.0.0)
-      coffee-script
-      eco-source
-      execjs
-    eco-source (1.1.0.rc.1)
-    ejs (1.1.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -128,7 +115,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  backbone-on-rails
+  backbone-rails
   better_errors
   bootstrap-sass
   instagram

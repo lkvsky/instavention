@@ -4,7 +4,7 @@ window.Instavention = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new InstaventionRouter();
+    new Instavention.Routers.InstaventionRouter();
     Backbone.history.start();
   }
 };

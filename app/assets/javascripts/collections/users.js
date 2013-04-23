@@ -1,5 +1,5 @@
-var UsersCollection = Backbone.Collection.extend({
-  model: User,
+Instavention.Collections.UsersCollection = Backbone.Collection.extend({
+  model: Instavention.Models.User,
 
   url: '/users'
 });
